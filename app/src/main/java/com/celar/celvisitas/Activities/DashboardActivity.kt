@@ -1,10 +1,9 @@
-package com.celar.celvisitas
+package com.celar.celvisitas.Activities
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import android.widget.Toast
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -13,7 +12,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.view.menu.MenuView
+import com.celar.celvisitas.R
 import com.celar.celvisitas.databinding.ActivityDashboardBinding
 
 class DashboardActivity : AppCompatActivity() {
@@ -40,7 +39,7 @@ class DashboardActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_slideshow,R.id.itemCerrarsession
+                R.id.nav_home, R.id.nav_slideshow, R.id.itemCerrarsession
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

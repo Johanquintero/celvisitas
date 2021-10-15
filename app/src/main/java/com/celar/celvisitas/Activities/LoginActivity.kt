@@ -1,4 +1,4 @@
-package com.celar.celvisitas
+package com.celar.celvisitas.Activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,9 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import com.celar.celvisitas.R
+import com.celar.celvisitas.Tools.AppConfig
+import com.celar.celvisitas.Tools.SessionManager
 import com.celar.celvisitas.interfaces.LoginAPI
 import com.celar.celvisitas.models.Login
 import com.google.gson.JsonObject
@@ -24,6 +27,8 @@ class LoginActivity : AppCompatActivity() {
     var name: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppConfig.session = SessionManager(this)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         username = findViewById(R.id.userNameLogin)
@@ -73,7 +78,12 @@ class LoginActivity : AppCompatActivity() {
                         if (response.body()!!.success) {
                             LoginSucces(response.body()!!.success,response?.code())
                             var json: JsonObject = response.body()!!.data
-                            name = json.get("name").toString()
+
+                            AppConfig.userObject.put("name",json.get("name").toString())
+                            AppConfig.userObject.put("token",json.get("token").toString())
+
+                            AppConfig.USERNAME = json.get("name").toString()
+                            AppConfig.token = json.get("token").toString()
 
                         } else {
                             LoginSucces(response.body()!!.success,response?.code())
@@ -112,8 +122,9 @@ class LoginActivity : AppCompatActivity() {
 
     fun LoginSucces(authorization: Boolean,code:Int){
         if (authorization){
+            AppConfig.loggin = true
             Toast.makeText(this, "EL login fue exitoso", Toast.LENGTH_LONG).show()
-            var intent: Intent = Intent(this,DashboardActivity::class.java)
+            var intent: Intent = Intent(this, DashboardActivity::class.java)
             startActivity(intent)
         }else{
             if (code == 400){

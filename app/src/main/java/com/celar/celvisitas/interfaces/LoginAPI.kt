@@ -1,5 +1,6 @@
 package com.celar.celvisitas.interfaces
 
+import com.celar.celvisitas.Tools.AppConfig
 import com.celar.celvisitas.models.Login
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -22,13 +23,11 @@ public interface LoginAPI {
 
     companion object {
 
-        var BASE_URL = "http://10.10.10.70:8000/api/"
-
         fun create(): LoginAPI {
 
             val retrofit = Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(BASE_URL)
+                .baseUrl(AppConfig.REST_API)
                 .build()
             return retrofit.create(LoginAPI::class.java)
 
