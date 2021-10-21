@@ -6,17 +6,56 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <FrameLayout
+        android:id="@+id/cardRequest"
+        android:layout_width="389dp"
+        android:layout_height="148dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/material_button"
+        android:backgroundTint="#A6AAC3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="117dp"
+            android:layout_height="108dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/nameRequestCard"
+            android:layout_width="230dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="Nombre de usuario pendiente"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/buttonAcept"
+            android:layout_width="107dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="135dp"
+            android:layout_marginTop="90dp"
+            android:background="@drawable/material_button_accept"
+            android:text="Aceptar"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/buttonCancel"
+            android:layout_width="114dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="260dp"
+            android:layout_marginTop="90dp"
+            android:background="@drawable/material_button_cancel"
+            android:text="Cancelar"
+            android:textColor="@color/white" />
+
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

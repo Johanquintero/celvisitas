@@ -1,6 +1,5 @@
 package com.celar.celvisitas.Activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,7 +10,9 @@ import com.celar.celvisitas.R
 import com.celar.celvisitas.Tools.AppConfig
 import com.celar.celvisitas.Tools.SessionManager
 import com.celar.celvisitas.interfaces.LoginAPI
+import com.celar.celvisitas.interfaces.VisitAPI
 import com.celar.celvisitas.models.Login
+import com.celar.celvisitas.models.Visit
 import com.google.gson.JsonObject
 import okhttp3.MediaType
 import okhttp3.RequestBody
@@ -19,6 +20,7 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -76,14 +78,16 @@ class LoginActivity : AppCompatActivity() {
                 ) {
                     if (response?.body() != null){
                         if (response.body()!!.success) {
-                            LoginSucces(response.body()!!.success,response?.code())
                             var json: JsonObject = response.body()!!.data
+
+                            LoginSucces(response.body()!!.success,response?.code())
 
                             AppConfig.userObject.put("name",json.get("name").toString())
                             AppConfig.userObject.put("token",json.get("token").toString())
 
                             AppConfig.USERNAME = json.get("name").toString()
-                            AppConfig.token = json.get("token").toString()
+                            var TokenString:String = "Bearer ${json.get("token").toString()}"
+                            AppConfig.token = TokenString.replace("\"", "")
 
                         } else {
                             LoginSucces(response.body()!!.success,response?.code())
@@ -98,21 +102,20 @@ class LoginActivity : AppCompatActivity() {
                 }
             })
 
-
-//                        val apiInterface = LoginAPI.create().getCasas();
-//                        apiInterface.enqueue(object : Callback<List<Login>> {
-//                                override fun onResponse(
-//                                        call: Call<List<Login>>,
-//                                        response: retrofit2.Response<List<Login>>
-//                                ) {
-//                                        if (response?.body() != null)
-//                                                response.body()!!
-//                                }
+//            val apiInterface = LoginAPI.create().getCasas();
+//            apiInterface.enqueue(object : Callback<List<Login>> {
+//                    override fun onResponse(
+//                            call: Call<List<Login>>,
+//                            response: retrofit2.Response<List<Login>>
+//                    ) {
+//                            if (response?.body() != null)
+//                                    response.body()!!
+//                    }
 //
-//                                override fun onFailure(call: Call<List<Login>>?, t: Throwable?) {
-//                                        Log.d("RETROFIT: ", "LogInRequest error: " + t.toString())
-//                                }
-//                        })
+//                    override fun onFailure(call: Call<List<Login>>?, t: Throwable?) {
+//                            Log.d("RETROFIT: ", "LogInRequest error: " + t.toString())
+//                    }
+//            })
         } catch (e: Exception) {
             e.stackTraceToString();
             Log.d("RETROFIT: ", "LogInRequest: " + e.toString())
@@ -124,8 +127,9 @@ class LoginActivity : AppCompatActivity() {
         if (authorization){
             AppConfig.loggin = true
             Toast.makeText(this, "EL login fue exitoso", Toast.LENGTH_LONG).show()
-            var intent: Intent = Intent(this, DashboardActivity::class.java)
-            startActivity(intent)
+            fetchVisits()
+//            var intent: Intent = Intent(this, DashboardActivity::class.java)
+//            startActivity(intent)
         }else{
             if (code == 400){
                 Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_LONG).show()
@@ -133,6 +137,28 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Usuario no valido", Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+        fun fetchVisits() {
+
+                val apiInterface = VisitAPI.create().getVisits()
+                .enqueue(object : Callback<Visit> {
+                override fun onResponse(
+                            call: Call<Visit>,
+                            response: Response<Visit>
+                    ) {
+                        if (response?.body() != null) {
+                            if (response.body()!!.success) {
+                                Log.i("Consola", response.body()!!.toString())
+                            }
+                        }
+                     }
+                    override fun onFailure(call: Call<Visit>?, t: Throwable?) {
+                            Log.d("RETROFIT: ", "LogInRequest error: " + t.toString())
+                    }
+        })
+
+
     }
 
 }

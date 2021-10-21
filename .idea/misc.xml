@@ -4,7 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Celar/apps/celvisitas/app/src/main/res/drawable/button.xml" value="0.2361111111111111" />
+        <entry key="..\:/Celar/apps/celvisitas/app/src/main/res/drawable/button_input.xml" value="0.2234375" />
         <entry key="..\:/Celar/apps/celvisitas/app/src/main/res/drawable/launcher_security_background.xml" value="0.1359375" />
+        <entry key="..\:/Celar/apps/celvisitas/app/src/main/res/drawable/material_button.xml" value="0.2234375" />
+        <entry key="..\:/Celar/apps/celvisitas/app/src/main/res/drawable/material_buttonAccept.xml" value="0.2234375" />
+        <entry key="..\:/Celar/apps/celvisitas/app/src/main/res/drawable/material_button_cancel.xml" value="0.25462962962962965" />
         <entry key="..\:/Celar/apps/celvisitas/app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
         <entry key="..\:/Celar/apps/celvisitas/app/src/main/res/layout/activity_login.xml" value="0.21822916666666667" />
         <entry key="..\:/Celar/apps/celvisitas/app/src/main/res/layout/activity_main.xml" value="0.2359375" />

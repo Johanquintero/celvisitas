@@ -2,21 +2,16 @@ package com.celar.celvisitas.interfaces
 
 import com.celar.celvisitas.Tools.AppConfig
 import com.celar.celvisitas.models.Login
+import com.celar.celvisitas.models.Visit
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 public interface LoginAPI {
     @GET("casas")
     fun getCasas() : Call<List<Login>>
-
-    @GET("users/{id}")
-    fun getUser(@Path("id") userId: String): Call<Login>
 
     @POST("login")
     fun logIN(@Body requestBody: RequestBody): Call<Login>
@@ -32,6 +27,7 @@ public interface LoginAPI {
             return retrofit.create(LoginAPI::class.java)
 
         }
+
 
     }
 

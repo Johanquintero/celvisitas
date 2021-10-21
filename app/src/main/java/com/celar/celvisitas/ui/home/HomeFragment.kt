@@ -1,9 +1,13 @@
 package com.celar.celvisitas.ui.home
 
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -15,7 +19,6 @@ class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
-
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -25,15 +28,21 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
+//        val textView: TextView = binding.textHome
+        val texName:TextView = binding.nameRequestCard
+        val imgViewRequest:ImageView = binding.imageView2
+        val uriImg:Uri = Uri.parse("https://www.tsensor.online/wp-content/uploads/2020/04/avatar-icon-png-105-images-in-collection-page-3-avatarpng-512_512.png")
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+            texName.text = "Juan carlos cardona"
+            imgViewRequest.setImageResource(R.drawable.avatar);
         })
         return root
     }

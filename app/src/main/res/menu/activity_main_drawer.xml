@@ -16,7 +16,7 @@
         <item
             android:id="@+id/itemCerrarsession"
             android:icon="@drawable/logout"
-            android:onClick="Logout"
-            android:title="@string/Logout" />
+            android:title="@string/Logout"
+            android:visible="false" />
     </group>
 </menu>
