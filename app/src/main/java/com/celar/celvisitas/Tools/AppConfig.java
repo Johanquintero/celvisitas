@@ -33,6 +33,8 @@ public class AppConfig {
     public static String USERNAME = "";
     public static String token = "";
     public static JSONObject userObject = new JSONObject();
+    public static ArrayList visitArray = new ArrayList();
+
     public static User user = new User();
     public static DashboardActivity dashboard = null;
     public static LoginActivity login = null;

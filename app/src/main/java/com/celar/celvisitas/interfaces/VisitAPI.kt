@@ -10,16 +10,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 
 import com.google.gson.GsonBuilder
-
-import org.json.JSONObject
 import retrofit2.converter.fastjson.FastJsonConverterFactory
-import com.celar.celvisitas.Tools.AppConfig.token
-import com.celar.celvisitas.models.Login
-import retrofit2.http.Path
-import retrofit2.http.Headers as Headers
-
-import okhttp3.Interceptor
-
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
@@ -45,9 +36,9 @@ public interface VisitAPI {
         }.build()
 
         fun create(): VisitAPI {
-            val gson = GsonBuilder()
-                .setLenient()
-                .create()
+//            val gson = GsonBuilder()
+//                .setLenient()
+//                .create()
 
             val retrofit = Retrofit.Builder()
                 .client(client)

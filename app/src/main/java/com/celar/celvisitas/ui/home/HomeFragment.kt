@@ -3,16 +3,21 @@ package com.celar.celvisitas.ui.home
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.celar.celvisitas.R
+import com.celar.celvisitas.Tools.AppConfig
 import com.celar.celvisitas.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -30,8 +35,7 @@ class HomeFragment : Fragment() {
     ): View? {
 
 
-        homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -46,6 +50,26 @@ class HomeFragment : Fragment() {
         })
         return root
     }
+
+    override fun onStart() {
+        super.onStart()
+
+        var card:FrameLayout = binding.cardRequest
+        var visitList = AppConfig.visitArray;
+
+        if(visitList.size == 0){
+
+            homeViewModel.text.observe(viewLifecycleOwner, Observer {
+                card.isInvisible
+
+            })
+
+        }
+
+        Log.i("Start",visitList.size.toString())
+
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

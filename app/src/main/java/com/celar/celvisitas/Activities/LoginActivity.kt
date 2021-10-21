@@ -1,5 +1,6 @@
 package com.celar.celvisitas.Activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -128,8 +129,8 @@ class LoginActivity : AppCompatActivity() {
             AppConfig.loggin = true
             Toast.makeText(this, "EL login fue exitoso", Toast.LENGTH_LONG).show()
             fetchVisits()
-//            var intent: Intent = Intent(this, DashboardActivity::class.java)
-//            startActivity(intent)
+            var intent: Intent = Intent(this, DashboardActivity::class.java)
+            startActivity(intent)
         }else{
             if (code == 400){
                 Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_LONG).show()
@@ -140,7 +141,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
         fun fetchVisits() {
-
                 val apiInterface = VisitAPI.create().getVisits()
                 .enqueue(object : Callback<Visit> {
                 override fun onResponse(
@@ -149,12 +149,13 @@ class LoginActivity : AppCompatActivity() {
                     ) {
                         if (response?.body() != null) {
                             if (response.body()!!.success) {
-                                Log.i("Consola", response.body()!!.toString())
+                                AppConfig.visitArray = response.body()!!.data
                             }
                         }
                      }
                     override fun onFailure(call: Call<Visit>?, t: Throwable?) {
-                            Log.d("RETROFIT: ", "LogInRequest error: " + t.toString())
+                        fetchVisits()
+                        Log.d("RETROFIT: ", "LogInRequest error: " + t.toString())
                     }
         })
 

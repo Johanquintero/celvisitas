@@ -5,10 +5,7 @@ data class Visit(
     var data: ArrayList<Any>,
     var message: Int
     ) {
-    constructor() : this(
-        false,
-        arrayListOf<Any>(),
-        0,
+    constructor() : this(success = false, arrayListOf<Any>(), 0,
     )
 }
 
