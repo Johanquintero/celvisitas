@@ -4,69 +4,118 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@drawable/camara_vigilancia"
     tools:context=".ui.slideshow.SlideshowFragment">
 
     <FrameLayout
+        android:layout_width="410dp"
+        android:layout_height="368dp"
+        android:background="@drawable/camara_vigilancia"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="4dp">
+
+    </FrameLayout>
+
+    <FrameLayout
         android:id="@+id/frameLayout3"
-        android:layout_width="409dp"
-        android:layout_height="394dp"
+        android:layout_width="413dp"
+        android:layout_height="506dp"
         android:layout_marginBottom="-40dp"
         android:background="@drawable/button"
-        android:backgroundTint="#95B8C6"
+        android:backgroundTint="#141717"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="1dp">
+        tools:layout_editor_absoluteX="-3dp">
 
     </FrameLayout>
 
     <Button
-        android:id="@+id/button4"
-        android:layout_width="178dp"
-        android:layout_height="59dp"
+        android:id="@+id/buttonLogout"
+        android:layout_width="197dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="-40dp"
         android:layout_marginBottom="100dp"
-        android:background="@drawable/material_button_cancel"
+        android:background="@drawable/material_button"
+        android:backgroundTint="#00BFA5"
+        android:drawableLeft="@drawable/logout_white_30"
+        android:fontFamily="@font/nunito"
+        android:onClick="onClickCloseSession"
+        android:paddingLeft="10dp"
         android:text="@string/Logout"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout2"
         tools:iconSize="50dp" />
 
     <FrameLayout
         android:id="@+id/frameLayout2"
-        android:layout_width="372dp"
-        android:layout_height="330dp"
-        android:layout_marginTop="148dp"
+        android:layout_width="371dp"
+        android:layout_height="295dp"
         android:background="@drawable/button_input"
         android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.353">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/nameUser"
             android:layout_width="337dp"
             android:layout_height="33dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/material_button"
+            android:fontFamily="@font/nunito"
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
             android:text="Nombre de usuario"
             android:textColor="#121010" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/numberCasa"
             android:layout_width="337dp"
             android:layout_height="33dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="70dp"
             android:background="@drawable/material_button"
+            android:fontFamily="@font/nunito"
             android:paddingLeft="15dp"
             android:paddingTop="5dp"
             android:text="Casa #"
+            android:textColor="#0E0D0D"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/residencial"
+            android:layout_width="337dp"
+            android:layout_height="33dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/material_button"
+            android:fontFamily="@font/nunito"
+            android:paddingLeft="15dp"
+            android:paddingTop="5dp"
+            android:text="Residencial"
+            android:textColor="#0E0D0D"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="337dp"
+            android:layout_height="33dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="170dp"
+            android:background="@drawable/material_button"
+            android:fontFamily="@font/nunito"
+            android:paddingLeft="15dp"
+            android:paddingTop="5dp"
+            android:text="Email"
             android:textColor="#0E0D0D"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

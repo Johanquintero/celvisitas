@@ -2,60 +2,35 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_home_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#DFDEDE"
     tools:context=".ui.home.HomeFragment">
 
-    <FrameLayout
-        android:id="@+id/cardRequest"
-        android:layout_width="389dp"
-        android:layout_height="148dp"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/material_button"
-        android:backgroundTint="#A6AAC3"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listReciclerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.057" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="117dp"
-            android:layout_height="108dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            tools:src="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/nameRequestCard"
-            android:layout_width="230dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="140dp"
-            android:layout_marginTop="30dp"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="Nombre de usuario pendiente"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/buttonAcept"
-            android:layout_width="107dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="135dp"
-            android:layout_marginTop="90dp"
-            android:background="@drawable/material_button_accept"
-            android:text="Aceptar"
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/buttonCancel"
-            android:layout_width="114dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="260dp"
-            android:layout_marginTop="90dp"
-            android:background="@drawable/material_button_cancel"
-            android:text="Cancelar"
-            android:textColor="@color/white" />
-
-    </FrameLayout>
+    <ImageButton
+        android:id="@+id/btnReload"
+        android:layout_width="61dp"
+        android:layout_height="60dp"
+        android:background="@drawable/button_input_dark"
+        android:backgroundTint="#000000"
+        android:src="@drawable/reload_user_white_64"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,16 @@
-package com.celar.celvisitas.Tools;
+package com.celar.celvisitas.Session;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.celar.celvisitas.Activities.LoginActivity;
+import com.celar.celvisitas.Tools.AppConfig;
+
 import org.json.JSONObject;
+
+import java.util.HashMap;
 
 public class SessionManager {
 
@@ -15,16 +21,15 @@ public class SessionManager {
     int PRIVATE_MODE = 0;
 
     private static final String KEY_ID          = "id";
-    private static final String KEY_USERNAME    = "username";
+    private static final String KEY_EMAIL    = "email";
     private static final String KEY_PASSWORD    = "password";
-    private static final String KEY_USERNAME_SAVED    = "username_saved";
-    private static final String KEY_PASSWORD_SAVED    = "password_saved";
     private static final String KEY_NOMBRE      = "nombre";
-    private static final String KEY_APELLIDOS   = "apellidos";
-    private static final String KEY_PERFILID    = "perfil_id";
-    private static final String KEY_REGID       = "reg_id";
-    private static final String KEY_ACCEPTA_POLITICAS = "acepta_politicas";
-    private static final String KEY_INICIA_HUELLA = "usa_huella";
+    private static final String KEY_TOKENFIREBASE  = "";
+    private static final String KEY_TOKEN_USER  = "";
+    private static final String KEY_CASA  = "";
+    private static final String KEY_RESIDENCIA  = "";
+    private static final String IS_LOGIN       = "IsLoggedIn";
+
 
     public SessionManager(Context context) {
         this._context = context;
@@ -32,72 +37,65 @@ public class SessionManager {
         editor = pref.edit();
     }
 
-    public void setAceptaPolitica(boolean actepta){
-        editor.putBoolean(KEY_ACCEPTA_POLITICAS,actepta);
+    public void createloginSession(String email,String password,String nombre,String tokenFirebase,String tokenUser){
+        editor.putBoolean(IS_LOGIN,true);
+        editor.putString(KEY_EMAIL,email);
+        editor.putString(KEY_PASSWORD,password);
+        editor.putString(KEY_NOMBRE,nombre);
+        editor.putString(KEY_TOKENFIREBASE,tokenFirebase);
+        editor.putString(KEY_TOKEN_USER,tokenUser.replace("\"", ""));
         editor.commit();
     }
 
-    public void setUsebiometric(boolean useDiometric){
-        editor.putBoolean(KEY_INICIA_HUELLA,useDiometric);
+    public void createInfoProfile(String casa,String residencia){
+        editor.putString(KEY_CASA,casa);
+        editor.putString(KEY_RESIDENCIA,residencia);
         editor.commit();
-    }
-
-    public void setUser(JSONObject u, boolean rememberLogin) {
-        try {
-            AppConfig.Bearer = u.get("token").toString();
-            if (rememberLogin) {
-                editor.putString(KEY_USERNAME, u.get("usuario").toString());
-                editor.putString(KEY_PASSWORD, u.get("clave").toString());
-                editor.putString(KEY_ID, u.get("id").toString());
-                editor.putString(KEY_NOMBRE, u.get("nombre").toString());
-                editor.putString(KEY_APELLIDOS, u.get("apellidos").toString());
-                editor.putString(KEY_PERFILID, u.get("perfil_id").toString());
-                //editor.putString(KEY_REGID, u.get("reg_id").toString());
-                editor.commit();
-            }
-        } catch (Exception e){
-            Log.e("ERROR", e.getMessage());
-        }
-
-        AppConfig.user.setUser(u);
-    }
-
-    public void setUserSavedToBiometrics(String username, String password) {
-        try {
-            editor.putString(KEY_USERNAME_SAVED, username);
-            editor.putString(KEY_PASSWORD_SAVED, password);
-            editor.commit();
-        } catch (Exception e){
-            Log.e("ERROR", e.getMessage());
-        }
-    }
-
-    public void destroySession() {
-        editor.putString(KEY_USERNAME, "");
-        editor.putString(KEY_PASSWORD, "");
-        editor.putString(KEY_ID, "");
-        editor.putString(KEY_NOMBRE, "");
-        editor.putString(KEY_PERFILID, "");
-        editor.putString(KEY_APELLIDOS, "");
-        editor.putString(KEY_REGID, "");
-
-        AppConfig.Bearer = "";
-
-        editor.commit();
-
-        AppConfig.user.clearData();
     }
 
     public boolean isLoggedIn() {
-        return !(pref.getString(KEY_USERNAME, "").equals("") || pref.getString(KEY_PASSWORD, "").equals(""));
+        return pref.getBoolean(IS_LOGIN,false);
     }
 
-    public boolean getAceptaPolitica(){
-        return pref.getBoolean(KEY_ACCEPTA_POLITICAS,false);
+    public void checkLogin(){
+        if(!this.isLoggedIn()){
+            Intent intent = new Intent(_context, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            _context.startActivity(intent);
+        }
+    }
+    public HashMap<String,String> getUserDetails(){
+        HashMap<String,String> user = new HashMap<String,String>();
+        user.put(KEY_EMAIL,pref.getString(KEY_EMAIL,null));
+        user.put(KEY_PASSWORD,pref.getString(KEY_PASSWORD,null));
+        user.put(KEY_ID,pref.getString(KEY_ID,null));
+        user.put(KEY_NOMBRE,pref.getString(KEY_NOMBRE,null));
+        user.put(KEY_TOKENFIREBASE,pref.getString(KEY_TOKENFIREBASE,null));
+        user.put(KEY_TOKEN_USER,pref.getString(KEY_TOKEN_USER,null));
+        user.put(KEY_CASA,pref.getString(KEY_CASA,null));
+        user.put(KEY_RESIDENCIA,pref.getString(KEY_RESIDENCIA,null));
+        return user;
     }
 
-    public String getUsername() {
-        return pref.getString(KEY_USERNAME, "");
+    public void logoutUser() {
+        editor.clear();
+        editor.commit();
+
+        Intent intent = new Intent(_context, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        AppConfig.Bearer = "";
+        AppConfig.user.clearData();
+
+        _context.startActivity(intent);
+    }
+
+
+
+    public String userToken() {
+        return pref.getString(KEY_TOKEN_USER, "");
     }
 
     public String getMD5Password() {
@@ -108,25 +106,18 @@ public class SessionManager {
         return pref.getString(KEY_NOMBRE, "");
     }
 
-    public String getApellidos() {
-        return pref.getString(KEY_APELLIDOS, "");
+    public String getEmail() {
+        return pref.getString(KEY_EMAIL, "");
     }
-
-    public String getPerfilid() {
-        return pref.getString(KEY_PERFILID, "");
+    public String getCasa() {
+        return pref.getString(KEY_CASA, "");
+    }
+    public String getResidencia() {
+        return pref.getString(KEY_RESIDENCIA, "");
     }
 
     public String getID() {
         return pref.getString(KEY_ID, "");
     }
 
-    public  boolean getBiometric(){return  pref.getBoolean(KEY_INICIA_HUELLA,false);}
-
-    public String getUsernameSaved() {
-        return pref.getString(KEY_USERNAME_SAVED, "");
-    }
-
-    public String getPasswordSaved() {
-        return pref.getString(KEY_PASSWORD_SAVED, "");
-    }
 }

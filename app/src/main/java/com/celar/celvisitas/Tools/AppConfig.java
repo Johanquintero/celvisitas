@@ -1,18 +1,16 @@
 package com.celar.celvisitas.Tools;
 
-import android.hardware.camera2.CaptureRequest;
 import android.os.Environment;
 import android.os.Handler;
 
 import com.celar.celvisitas.Activities.DashboardActivity;
 import com.celar.celvisitas.Activities.LoginActivity;
+import com.celar.celvisitas.Session.SessionManager;
 import com.celar.celvisitas.models.User;
 
 import org.json.JSONObject;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Timer;
 
 
@@ -24,14 +22,17 @@ public class AppConfig {
 
     public static final String YOUTUBE_APIKEY = "";
     public static final String REST_API = "http://10.10.10.70:8000/api/";
+//    public static final String REST_API = "http://10.10.10.141:8001/api/";
 
-
-    public static final String REST_FORMULARIO = "https://181.48.90.198/celcovid/api/rest/formulario_post_unificado.php";
-
-    public static com.celar.celvisitas.Tools.SessionManager session;
+    public static SessionManager session;
     public static String APPNAME = "Celvisitas";
     public static String USERNAME = "";
+    public static String EMAIL = "";
+    public static String HOUSE = "";
+    public static String RESIDENCIA = "";
+    public static String USER_ID = "";
     public static String token = "";
+    public static String tokenFirebase = "";
     public static JSONObject userObject = new JSONObject();
     public static ArrayList visitArray = new ArrayList();
 

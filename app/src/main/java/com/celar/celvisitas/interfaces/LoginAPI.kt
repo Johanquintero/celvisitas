@@ -3,6 +3,7 @@ package com.celar.celvisitas.interfaces
 import com.celar.celvisitas.Tools.AppConfig
 import com.celar.celvisitas.models.Login
 import com.celar.celvisitas.models.Visit
+import com.celar.celvisitas.models.VisitAllowedOrReject
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Retrofit
