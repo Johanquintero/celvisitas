@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "396693274954",
+    "project_id": "celvisitas-96a96",
+    "storage_bucket": "celvisitas-96a96.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396693274954:android:f69f12ff54a9750b23c1b3",
+        "android_client_info": {
+          "package_name": "com.celar.celvisitas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "396693274954-olupl6fvg9hp11lrvan8queeb68ir25o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJLZAlEu9SNL-a4cPVf4-k4QBVgYgoilY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "396693274954-olupl6fvg9hp11lrvan8queeb68ir25o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

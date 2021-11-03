@@ -6,9 +6,6 @@ import android.util.Log;
 
 import org.json.JSONObject;
 
-/**
- * Created by Julio Garcés on 11/05/2017.
- */
 public class SessionManager {
 
     SharedPreferences pref;
@@ -55,6 +52,7 @@ public class SessionManager {
                 editor.putString(KEY_NOMBRE, u.get("nombre").toString());
                 editor.putString(KEY_APELLIDOS, u.get("apellidos").toString());
                 editor.putString(KEY_PERFILID, u.get("perfil_id").toString());
+                //editor.putString(KEY_REGID, u.get("reg_id").toString());
                 editor.commit();
             }
         } catch (Exception e){
@@ -63,7 +61,7 @@ public class SessionManager {
 
         AppConfig.user.setUser(u);
     }
-    
+
     public void setUserSavedToBiometrics(String username, String password) {
         try {
             editor.putString(KEY_USERNAME_SAVED, username);
