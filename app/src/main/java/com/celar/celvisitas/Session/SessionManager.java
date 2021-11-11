@@ -24,11 +24,11 @@ public class SessionManager {
     private static final String KEY_EMAIL    = "email";
     private static final String KEY_PASSWORD    = "password";
     private static final String KEY_NOMBRE      = "nombre";
-    private static final String KEY_TOKENFIREBASE  = "";
-    private static final String KEY_TOKEN_USER  = "";
     private static final String KEY_CASA  = "";
     private static final String KEY_RESIDENCIA  = "";
     private static final String IS_LOGIN       = "IsLoggedIn";
+    private static final String KEY_USER_SESSION  = "";
+
 
 
     public SessionManager(Context context) {
@@ -37,15 +37,19 @@ public class SessionManager {
         editor = pref.edit();
     }
 
-    public void createloginSession(String email,String password,String nombre,String tokenFirebase,String tokenUser){
+    public void createloginSession(String email,String password,String nombre){
         editor.putBoolean(IS_LOGIN,true);
         editor.putString(KEY_EMAIL,email);
         editor.putString(KEY_PASSWORD,password);
         editor.putString(KEY_NOMBRE,nombre);
-        editor.putString(KEY_TOKENFIREBASE,tokenFirebase);
-        editor.putString(KEY_TOKEN_USER,tokenUser.replace("\"", ""));
         editor.commit();
     }
+
+    public void savedTokenUser(String tokenUser){
+        editor.putString(KEY_USER_SESSION,tokenUser);
+        editor.commit();
+    }
+
 
     public void createInfoProfile(String casa,String residencia){
         editor.putString(KEY_CASA,casa);
@@ -71,8 +75,7 @@ public class SessionManager {
         user.put(KEY_PASSWORD,pref.getString(KEY_PASSWORD,null));
         user.put(KEY_ID,pref.getString(KEY_ID,null));
         user.put(KEY_NOMBRE,pref.getString(KEY_NOMBRE,null));
-        user.put(KEY_TOKENFIREBASE,pref.getString(KEY_TOKENFIREBASE,null));
-        user.put(KEY_TOKEN_USER,pref.getString(KEY_TOKEN_USER,null));
+        user.put(KEY_USER_SESSION,pref.getString(KEY_USER_SESSION,null));
         user.put(KEY_CASA,pref.getString(KEY_CASA,null));
         user.put(KEY_RESIDENCIA,pref.getString(KEY_RESIDENCIA,null));
         return user;
@@ -94,8 +97,8 @@ public class SessionManager {
 
 
 
-    public String userToken() {
-        return pref.getString(KEY_TOKEN_USER, "");
+    public String getKeyUserSession() {
+        return pref.getString(KEY_USER_SESSION, "");
     }
 
     public String getMD5Password() {

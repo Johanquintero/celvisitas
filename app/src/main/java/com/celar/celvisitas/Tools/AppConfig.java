@@ -21,8 +21,8 @@ import java.util.Timer;
 public class AppConfig {
 
     public static final String YOUTUBE_APIKEY = "";
-    public static final String REST_API = "http://10.10.10.70:8000/api/";
-//    public static final String REST_API = "http://10.10.10.141:8001/api/";
+    public static final String REST_API = "https://app.parcelacionbosqueresidencial.com/api/";
+//    public static final String REST_API = "http://10.10.10.70:8000/api/";
 
     public static SessionManager session;
     public static String APPNAME = "Celvisitas";

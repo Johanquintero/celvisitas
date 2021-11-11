@@ -32,6 +32,9 @@ import android.widget.EditText
 import android.widget.TextView
 import com.celar.celvisitas.Session.SessionManager
 import com.celar.celvisitas.interfaces.RequestAllApi
+import com.google.firebase.FirebaseApp
+import com.google.firebase.appcheck.FirebaseAppCheck
+import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory
 import com.google.gson.JsonObject
 
 class DashboardActivity : AppCompatActivity() {
@@ -52,7 +55,8 @@ class DashboardActivity : AppCompatActivity() {
         sessionManager = SessionManager(applicationContext)
         sessionManager.checkLogin()
 
-        AppConfig.token = sessionManager.userToken().replace("\"", "")
+        AppConfig.token = sessionManager.getKeyUserSession().replace("\"", "")
+
         AppConfig.USERNAME = sessionManager.nombre.replace("\"", "")
 
         setSupportActionBar(binding.appBarDashboard.toolbar)
@@ -160,7 +164,6 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     fun getInfoUser(){
-
         val apiInterface = RequestAllApi.create().getUser()
             .enqueue(object : Callback<VisitAllowedOrReject> {
                 override fun onResponse(
@@ -184,12 +187,5 @@ class DashboardActivity : AppCompatActivity() {
             })
     }
 
-//    fun reloadFragmentHome(){
-//        if (homeFragment is HomeFragment) {
-//            supportFragmentManager.beginTransaction()
-//                .replace(R.id.fragment_home_id, homeFragment)
-//                .commit()
-//        }
-//    }
 
 }

@@ -8,17 +8,8 @@
     tools:context=".ui.slideshow.SlideshowFragment">
 
     <FrameLayout
-        android:layout_width="410dp"
-        android:layout_height="368dp"
-        android:background="@drawable/camara_vigilancia"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="4dp">
-
-    </FrameLayout>
-
-    <FrameLayout
         android:id="@+id/frameLayout3"
-        android:layout_width="413dp"
+        android:layout_width="match_parent"
         android:layout_height="506dp"
         android:layout_marginBottom="-40dp"
         android:background="@drawable/button"

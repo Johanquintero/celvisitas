@@ -21,10 +21,10 @@
 
     <ImageButton
         android:id="@+id/btnReload"
-        android:layout_width="61dp"
-        android:layout_height="60dp"
-        android:background="@drawable/button_input_dark"
-        android:backgroundTint="#000000"
+        android:layout_width="70dp"
+        android:layout_height="64dp"
+        android:background="@drawable/white_frame"
+        android:backgroundTint="#E6000000"
         android:src="@drawable/reload_user_white_64"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

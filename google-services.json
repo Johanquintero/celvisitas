@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "396693274954",
+    "firebase_url": "https://celvisitas-96a96-default-rtdb.firebaseio.com",
+    "project_id": "celvisitas-96a96",
+    "storage_bucket": "celvisitas-96a96.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396693274954:android:7a7ee048e65bf1d923c1b3",
+        "android_client_info": {
+          "package_name": "com.celar.celvisitas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "396693274954-1i5m4v6faejrham41n8ptr7hofuqjvcq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.celar.celvisitas",
+            "certificate_hash": "b772b0b020517f9493d8eadf2fb171641b08978d"
+          }
+        },
+        {
+          "client_id": "396693274954-olupl6fvg9hp11lrvan8queeb68ir25o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJLZAlEu9SNL-a4cPVf4-k4QBVgYgoilY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "396693274954-olupl6fvg9hp11lrvan8queeb68ir25o.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "396693274954-nghtcf9tidpiec1u9oa9m8o3fbbabi7u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.co.celar.celvisitas"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

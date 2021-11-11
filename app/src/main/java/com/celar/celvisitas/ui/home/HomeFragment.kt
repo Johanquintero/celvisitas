@@ -38,7 +38,6 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -61,6 +60,7 @@ class HomeFragment : Fragment() {
     }
 
     fun apiRequestVisit(){
+
         val apiInterface = VisitAPI.create().getVisits()
             .enqueue(object : Callback<Visit> {
                 override fun onResponse(
@@ -101,6 +101,8 @@ class HomeFragment : Fragment() {
             var name:String = visitJSONArray.getJSONObject(x).get("person").toString()
             var status:String = visitJSONArray.getJSONObject(x).get("status").toString()
             var img:String = visitJSONArray.getJSONObject(x).get("photo").toString()
+
+            Log.i("InfoUser",img)
 
 
             if(status == "allowed" || status == "waiting")

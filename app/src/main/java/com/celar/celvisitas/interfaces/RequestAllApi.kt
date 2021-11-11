@@ -1,6 +1,7 @@
 package com.celar.celvisitas.interfaces
 
 import com.celar.celvisitas.Tools.AppConfig
+import com.celar.celvisitas.models.Visit
 import com.celar.celvisitas.models.VisitAllowedOrReject
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -15,6 +16,8 @@ interface RequestAllApi {
     @GET("user")
     fun getUser(): Call<VisitAllowedOrReject>
 
+    @GET("visits/avalibles")
+    fun getVisits(): Call<Visit>
 
     companion object {
         var client = OkHttpClient.Builder().addInterceptor { chain ->
