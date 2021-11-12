@@ -16,6 +16,7 @@ import com.celar.celvisitas.interfaces.VisitAPI
 import com.celar.celvisitas.models.Login
 import com.celar.celvisitas.models.VisitAllowedOrReject
 import com.google.android.gms.tasks.OnCompleteListener
+
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
 import com.google.firebase.appcheck.FirebaseAppCheck
@@ -29,6 +30,13 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.stream.DoubleStream.builder
+import java.util.stream.IntStream.builder
+import java.util.stream.Stream.builder
+import com.google.firebase.auth.FirebaseAuth
+
+
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -48,7 +56,6 @@ class LoginActivity : AppCompatActivity() {
 
         username = findViewById(R.id.userNameLogin)
         password = findViewById(R.id.passwordlogin)
-
 
         FirebaseApp.initializeApp(this)
         val firebaseAppCheck = FirebaseAppCheck.getInstance()
@@ -159,7 +166,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun notification(){
-
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
 
             if (!task.isSuccessful) {
